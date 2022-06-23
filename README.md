@@ -4,7 +4,7 @@ This project restructures A-LOAM completely with more modularized design and cle
 
 This restructured version has the same performance with the original A-LOAM.
 
-<img src="https://github.com/kangqi-ni/A-LOAM-restructured/blob/src/A-LOAM/picture/kitti_data.png"/>
+<img src="https://github.com/kangqi-ni/A-LOAM-restructured/blob/master/src/A-LOAM-restructured/picture/kitti_data.png"/>
 
 References:
 
