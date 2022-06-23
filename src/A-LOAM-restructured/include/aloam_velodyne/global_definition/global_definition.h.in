@@ -1,0 +1,9 @@
+#ifndef GLOBAL_DEFINATION_H_IN
+#define GLOBAL_DEFINATION_H_IN
+
+#include <string>
+
+namespace aloam {
+const std::string WORK_SPACE_PATH = "@WORK_SPACE_PATH@";
+}
+#endif // GLOBAL_DEFINATION_H_IN

@@ -1,0 +1,5 @@
+.cache/
+.vscode/
+Log/
+build/
+run.sh

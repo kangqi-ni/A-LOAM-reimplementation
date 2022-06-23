@@ -1,0 +1,179 @@
+scan_registration:
+    subscriber:
+        velodyne:
+            topic_name: /velodyne_points
+            frame_id: camera_init
+            queue_size: 5000
+        rtk:
+            topic_name: /path_gt
+            frame_id: camera_init
+            queue_size: 5000
+    publisher:
+        filtered:
+            topic_name: /velodyne_points_filtered
+            frame_id: camera_init
+            queue_size: 5000
+        sharp:
+            topic_name: /laser_cloud_sharp
+            frame_id: camera_init
+            queue_size: 5000
+        less_sharp:
+            topic_name: /laser_cloud_less_sharp
+            frame_id: camera_init
+            queue_size: 5000
+        flat:
+            topic_name: /laser_cloud_flat
+            frame_id: camera_init
+            queue_size: 5000
+        less_flat:
+            topic_name: /laser_cloud_less_flat
+            frame_id: camera_init
+            queue_size: 5000 
+        removed:
+            topic_name: /velodyne_cloud_2
+            frame_id: camera_init
+            queue_size: 5000 
+        scanid:
+            topic_name: /laser_scanid
+            frame_id: camera_init
+            queue_size: 5000 
+    param:
+        # used later for motion compensation:
+        scan_period: 0.10
+        # num. lidar scans:
+        num_scans: 64
+        # only measurements taken outside this range is kept:
+        min_range: 5.0
+        # neighborhood size for curvature calculation:
+        neighborhood_size: 5
+        # num. sectors for feature point generation:
+        num_sectors: 6
+        # feature point filters:
+        filter:
+            surf_less_flat:
+                leaf_size: [0.2, 0.2, 0.2]
+laser_odometry:
+    publisher:
+        sharp:
+            topic_name: /laser_cloud_corner_last
+            frame_id: camera_init
+            queue_size: 5000
+        flat:
+            topic_name: /laser_cloud_surf_last
+            frame_id: camera_init
+            queue_size: 5000
+        full:
+            topic_name: /velodyne_cloud_3
+            frame_id: camera_init
+            queue_size: 5000
+        odometry:
+            topic_name: /laser_odom_to_init
+            frame_id: camera_init
+            child_frame_id: aft_mapped
+            queue_size: 5000
+        path:
+            topic_name: /laser_odom_path
+            frame_id: camera_init
+            queue_size: 5000
+    param:
+        # kdtree nearest-neighborhood thresh:
+        distance_thresh: 25.0
+        # lidar scan neighborhood thresh:
+        scan_thresh: 2.50
+
+        # num threads:
+        num_threads: 1
+        # max. num of iterations, scan-scan odometry estimation:
+        max_num_iteration: 4
+        # max. solver time in seconds:
+        max_solver_time: 0.05
+
+        # mapping point cloud publish freq:
+        num_frames_skip: 1
+laser_mapping:
+    publisher:
+        odometry:
+            topic_name: /aft_mapped_to_init
+            frame_id: camera_init
+            child_frame_id: aft_mapped
+            queue_size: 5000
+        odometry_high_frec:
+            topic_name: /aft_mapped_to_init_high_frec
+            frame_id: camera_init
+            child_frame_id: aft_mapped
+            queue_size: 5000
+        path:
+            topic_name: /aft_mapped_path
+            frame_id: camera_init
+            queue_size: 5000
+        local_map:
+            topic_name: /laser_cloud_surround
+            frame_id:  camera_init
+            queue_size: 5000
+        global_map:
+            topic_name: /laser_cloud_map
+            frame_id: camera_init
+            queue_size: 5000
+        full_cloud:
+            topic_name: /velodyne_cloud_registered
+            frame_id: camera_init
+            queue_size: 5000
+    param:
+        # down sampler for LOAM feature points:
+        filter:
+            sharp:
+                leaf_size: [0.4, 0.4, 0.4]
+            flat:
+                leaf_size: [0.8, 0.8, 0.8]
+        # submap:
+        submap:
+            resolution: 50.0
+            num_tiles_x: 21
+            num_tiles_y: 21
+            num_tiles_z: 11
+            num_tiles: 4851
+            reanchor_margin: 3
+            local_map_radius: 2
+        # matching:
+        matching:
+            # min. num of line feature points:
+            min_num_sharp_points: 10
+            # min. num of plane feature points:
+            min_num_flat_points: 50
+
+            # kdtree nearest-neighborhood thresh:
+            distance_thresh: 1.0
+            
+            # num threads:
+            num_threads: 1
+            # max. num of iterations, scan-map odometry estimation:
+            max_num_iteration: 4
+            # max. solver time in seconds:
+            max_solver_time: 0.05
+
+        # lidar map publish freq:
+        num_frames_skip: 2
+# evaluation:
+#     subscriber:
+#         odometry:
+#             topic_name: /odometry/lidar/scan_to_map
+#             frame_id: imu_link
+#             queue_size: 5000
+#         velodyne:
+#             topic_name: /kitti/velo/pointcloud
+#             frame_id: velo_link
+#             queue_size: 5000
+#         imu:
+#             topic_name: /kitti/oxts/imu
+#             frame_id: imu_link
+#             queue_size: 5000
+#         gnss:
+#             topic_name: /kitti/oxts/gps/fix
+#             frame_id: imu_link
+#             queue_size: 5000
+#     publisher:
+#         odometry:
+#             topic_name: /odometry/ground_truth
+#             frame_id: map
+#             child_frame_id: velo_link
+#             queue_size: 5000
