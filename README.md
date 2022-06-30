@@ -4,7 +4,7 @@ This project reimplements A-LOAM with more modularized design and clearer logic 
 
 This reimplementation has the same performance with the original A-LOAM.
 
-<img src="https://github.com/kangqi-ni/A-LOAM-restructured/blob/master/src/A-LOAM-restructured/picture/kitti_data.png"/>
+<img src="https://github.com/kangqi-ni/A-LOAM-reimplementation/blob/master/src/A-LOAM-restructured/picture/kitti_data.png"/>
 
 References:
 
