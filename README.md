@@ -1,8 +1,8 @@
-# A-LOAM Restructured
+# A-LOAM Reimplementation
 
-This project restructures A-LOAM completely with more modularized design and clearer logic but also serves as a learning process to understand A-LOAM.
+This project reimplements A-LOAM with more modularized design and clearer logic but also serves as a learning process to understand A-LOAM.
 
-This restructured version has the same performance with the original A-LOAM.
+This reimplementation has the same performance with the original A-LOAM.
 
 <img src="https://github.com/kangqi-ni/A-LOAM-restructured/blob/master/src/A-LOAM-restructured/picture/kitti_data.png"/>
 
