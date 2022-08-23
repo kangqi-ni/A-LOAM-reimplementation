@@ -10,8 +10,8 @@ Any rosbag that is compatible with A-LOAM can be used to run this algorithm. The
 
 The dependencies are the same as A-LOAM, which are detailed in CMakeLists.txt.
 
-References:
 
-[1] Tong Qin, Shaozu Cao. (2020). A-LOAM: Advanced Implementation of LOAM. https://github.com/HKUST-Aerial-Robotics/A-LOAM. 
-
-[2] Qian Ren. (2020). Localization in Auto Driving. https://github.com/Little-Potato-1990/localization_in_auto_driving. 
+References: <br>
+[1] Tong Qin, Shaozu Cao. (2020). A-LOAM: Advanced Implementation of LOAM. https://github.com/HKUST-Aerial-Robotics/A-LOAM. <br>
+[2] Qian Ren. (2020). Localization in Auto Driving. https://github.com/Little-Potato-1990/localization_in_auto_driving. <br>
+[3] Yao Ge. (2021). Sensor Fusion for Localization CourseWare. https://github.com/AlexGeControl/Sensor-Fusion-for-Localization-Courseware. <br>
